@@ -1,5 +1,6 @@
 package AutomationTest.Pages.MyGrants;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +24,9 @@ public class CompanyProfilePage {
     @FindBy(id="submit-btn")
     private WebElement submitButton;
 
-    public void agreement(){
+    public void agreement() throws InterruptedException{
+        ((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        Thread.sleep(2000);
         checkBox.click();
         if(submitButton.isEnabled()){
             submitButton.click();

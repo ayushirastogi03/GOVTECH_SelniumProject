@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -20,7 +19,10 @@ public class CostPage {
     private WebElement cost;
 
     @FindBy(xpath="//span[@id='react-select-project_cost-psg_payment_mode_id--value']/div[@class='Select-placeholder']")
-    private WebElement purchaseHow;
+    private WebElement dropDownlink_PurchaseHow;
+
+    @FindBy(xpath="//div[@id='react-select-project_cost-psg_payment_mode_id--list']/div[@id='react-select-project_cost-psg_payment_mode_id--option-0']")
+    private WebElement dropDownValues_PurchaseHow;
 
     @FindBy(xpath="//input[@id='react-project_cost-cost_in_billing_currency']")
     private WebElement purchasePrice;
@@ -43,15 +45,11 @@ public class CostPage {
     }
 
     public void selectPurchaseType()throws InterruptedException{
-        purchaseHow.click();
-       // Thread.sleep(1000);
-       // Select select=new Select(purchaseHow);
-        List<WebElement> purchasehow=driver.findElements(By.xpath("//span[@id='react-select-project_cost-psg_payment_mode_id--value']/div[@class='Select-placeholder']"));
-       if(purchasehow.get(0).isDisplayed()){
-           purchasehow.get(0).click();
-       }
-        //select.selectByVisibleText("Direct Purchase");
-        Thread.sleep(1000);
+        dropDownlink_PurchaseHow.click();
+        Thread.sleep(2000);
+
+        dropDownValues_PurchaseHow.click();
+        Thread.sleep(2000);
 
         purchasePrice.sendKeys("1000");
         anyOtherFees.sendKeys("1000");

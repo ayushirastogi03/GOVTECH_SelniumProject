@@ -105,6 +105,7 @@ public class ProposalPage {
         locationType.sendKeys(Keys.TAB);
         Thread.sleep(2000);
         postalCode.sendKeys("509063");
+        Thread.sleep(2000);
         checkBusinessAddress.click();
         NextButton.click();
     }
