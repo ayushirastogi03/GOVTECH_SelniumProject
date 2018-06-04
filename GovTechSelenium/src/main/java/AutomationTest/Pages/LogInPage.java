@@ -20,6 +20,11 @@ public class LogInPage {
 
     public LogInPage(WebDriver driver){
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public LogInPage(WebDriver driver,boolean autoload){
+        this.driver=driver;
         navigateToLoginPage();
         PageFactory.initElements(driver,this);
     }
@@ -42,7 +47,7 @@ public class LogInPage {
     }
 
     public void navigateToLoginPage(){
-        HomePage homePage=new HomePage(driver);
+        HomePage homePage=new HomePage(driver,true);
         homePage.validateHomePageUrl();
         homePage.clickOnLoginButton();
     }

@@ -14,6 +14,11 @@ public class SummaryPage {
 
     public SummaryPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public SummaryPage(WebDriver driver,boolean autoLoad)throws InterruptedException{
+        this.driver=driver;
         navigateToSummaryPage();
         PageFactory.initElements(driver,this);
     }
@@ -27,7 +32,7 @@ public class SummaryPage {
     }
 
     public void navigateToSummaryPage() throws InterruptedException{
-        CompanyProfilePage companyProfilePage=new CompanyProfilePage(driver);
+        CompanyProfilePage companyProfilePage=new CompanyProfilePage(driver,true);
         companyProfilePage.agreement();
     }
 }

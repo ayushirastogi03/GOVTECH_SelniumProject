@@ -17,9 +17,15 @@ public class SelectSectorPage {
 
     public SelectSectorPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public SelectSectorPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToSelectSectorPage();
         PageFactory.initElements(driver,this);
     }
+
     public void selectSector() {
         BuildingConstruction.click();
         subType.click();
@@ -27,7 +33,7 @@ public class SelectSectorPage {
 
 
     public void navigateToSelectSectorPage() throws InterruptedException{
-        DashboardPage dashboardPage=new DashboardPage(driver);
+        DashboardPage dashboardPage=new DashboardPage(driver,true);
         dashboardPage.clickOnGetNewGrant();
     }
 }

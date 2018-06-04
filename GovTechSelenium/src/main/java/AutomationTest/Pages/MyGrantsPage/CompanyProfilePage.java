@@ -13,6 +13,12 @@ public class CompanyProfilePage {
 
     public CompanyProfilePage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+    }
+
+    public CompanyProfilePage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToCompanyProfilePage();
         PageFactory.initElements(driver,this);
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -34,7 +40,7 @@ public class CompanyProfilePage {
     }
 
     public void navigateToCompanyProfilePage() throws InterruptedException{
-        DeclareReviewPage declareReviewPage=new DeclareReviewPage(driver);
+        DeclareReviewPage declareReviewPage=new DeclareReviewPage(driver,true);
         declareReviewPage.provideAnswers();
     }
 

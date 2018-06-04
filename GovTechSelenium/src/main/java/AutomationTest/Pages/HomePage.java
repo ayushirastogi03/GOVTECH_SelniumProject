@@ -17,6 +17,11 @@ public class HomePage{
        PageFactory.initElements(driver,this);
    }
 
+   public HomePage(WebDriver driver,boolean autoload){
+        this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
    public void clickOnLoginButton(){
        LoginButton.click();
    }

@@ -15,16 +15,20 @@ public class GrantActionsPage {
 
     public GrantActionsPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
-        navigateToGrantActionsPage();
         PageFactory.initElements(driver,this);
     }
 
+    public GrantActionsPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
+        navigateToGrantActionsPage();
+        PageFactory.initElements(driver,this);
+    }
     public void clickOnProceedButton(){
         ProceedButton.click();
     }
 
     public void navigateToGrantActionsPage() throws InterruptedException{
-        ApplyForGrantPage applyforgrant=new ApplyForGrantPage(driver);
+        ApplyForGrantPage applyforgrant=new ApplyForGrantPage(driver,true);
         applyforgrant.chooseBusinessArea();
         Thread.sleep(2000);
         applyforgrant.clickApplyButton();

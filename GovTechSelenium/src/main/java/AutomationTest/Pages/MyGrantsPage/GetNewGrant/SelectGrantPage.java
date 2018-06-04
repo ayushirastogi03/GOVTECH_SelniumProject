@@ -13,6 +13,11 @@ public class SelectGrantPage {
 
     public SelectGrantPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public SelectGrantPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToSelectGrantPage();
         PageFactory.initElements(driver,this);
     }
@@ -22,7 +27,7 @@ public class SelectGrantPage {
     }
 
     public void navigateToSelectGrantPage()throws InterruptedException{
-        SelectSectorPage selectSectorPage =new SelectSectorPage(driver);
+        SelectSectorPage selectSectorPage =new SelectSectorPage(driver,true);
         selectSectorPage.selectSector();
     }
 }

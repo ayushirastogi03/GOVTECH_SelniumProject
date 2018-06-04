@@ -42,6 +42,11 @@ public class EligibilityPage {
 
     public EligibilityPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public EligibilityPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToEligbilityPage();
         PageFactory.initElements(driver,this);
     }
@@ -82,7 +87,7 @@ public class EligibilityPage {
     }
 
     public void navigateToEligbilityPage() throws InterruptedException{
-        GrantActionsPage grantActionsPage=new GrantActionsPage(driver);
+        GrantActionsPage grantActionsPage=new GrantActionsPage(driver,true);
         grantActionsPage.clickOnProceedButton();
         Thread.sleep(2000);
     }

@@ -17,6 +17,11 @@ public class ProposalPage {
 
     public ProposalPage(WebDriver driver)throws InterruptedException{
         this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public ProposalPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver = driver;
         navigateToProposalPage();
         PageFactory.initElements(driver, this);
     }
@@ -105,7 +110,7 @@ public class ProposalPage {
     }
 
     public void navigateToProposalPage() throws InterruptedException{
-        ContactDetailsPage contactDetailsPage=new ContactDetailsPage(driver);
+        ContactDetailsPage contactDetailsPage=new ContactDetailsPage(driver,true);
         contactDetailsPage.enterContactDetails("test","test",12345678,"abc@test.com","abc1@test.com");
         contactDetailsPage.provideMailingAddress();
         boolean check=contactDetailsPage.checkOfferAddresseDetails();

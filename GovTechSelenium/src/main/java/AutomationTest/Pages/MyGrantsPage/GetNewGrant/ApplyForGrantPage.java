@@ -17,6 +17,11 @@ public class ApplyForGrantPage {
 
     public ApplyForGrantPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public ApplyForGrantPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToApplyForGrantPage();
         PageFactory.initElements(driver,this);
     }
@@ -30,7 +35,7 @@ public class ApplyForGrantPage {
     }
 
     public void navigateToApplyForGrantPage() throws InterruptedException{
-        SelectGrantPage selectGrantPage =new SelectGrantPage(driver);
+        SelectGrantPage selectGrantPage =new SelectGrantPage(driver,true);
         selectGrantPage.selectGrant();
     }
 }

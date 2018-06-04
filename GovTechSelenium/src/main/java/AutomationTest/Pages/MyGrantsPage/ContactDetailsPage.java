@@ -20,6 +20,11 @@ public class ContactDetailsPage {
 
     public ContactDetailsPage(WebDriver driver) throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public ContactDetailsPage(WebDriver driver,boolean autoload) throws InterruptedException{
+        this.driver=driver;
         navigateToContactDetailsPage();
         PageFactory.initElements(driver,this);
     }
@@ -99,7 +104,7 @@ public class ContactDetailsPage {
     }
 
     public void navigateToContactDetailsPage() throws InterruptedException{
-        EligibilityPage eligibilityPage=new EligibilityPage(driver);
+        EligibilityPage eligibilityPage=new EligibilityPage(driver,true);
         eligibilityPage.selectYesRadioButton();
         eligibilityPage.clickOnNextButton();
         Thread.sleep(2000);

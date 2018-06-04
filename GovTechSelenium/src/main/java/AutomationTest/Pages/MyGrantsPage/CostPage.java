@@ -37,6 +37,11 @@ public class CostPage {
     //validate total - purchase price + Any other fees
     public CostPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public CostPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToCostPage();
         PageFactory.initElements(driver,this);
     }
@@ -53,7 +58,7 @@ public class CostPage {
     }
 
     public void navigateToCostPage() throws InterruptedException{
-        ProposalPage proposalPage=new ProposalPage(driver);
+        ProposalPage proposalPage=new ProposalPage(driver, true);
         proposalPage.selectTypeOfSolution();
         proposalPage.searchSolution("Product Solutions");
         proposalPage.setDate();

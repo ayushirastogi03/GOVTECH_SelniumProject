@@ -14,6 +14,11 @@ public class DashboardPage {
 
     public DashboardPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public DashboardPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToDashBoardPage();
         PageFactory.initElements(driver,this);
     }
@@ -27,7 +32,7 @@ public class DashboardPage {
     }
 
     public void navigateToDashBoardPage()throws InterruptedException{
-        LogInPage logInPage=new LogInPage(driver);
+        LogInPage logInPage=new LogInPage(driver,true);
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         logInPage.LoginAsDefinedUser("S9111111A");
     }

@@ -14,6 +14,11 @@ public class DeclareReviewPage {
 
     public DeclareReviewPage(WebDriver driver)throws InterruptedException {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public DeclareReviewPage(WebDriver driver,boolean autoload)throws InterruptedException {
+        this.driver = driver;
         navigateToDelareReviewPage();
         PageFactory.initElements(driver, this);
     }
@@ -46,7 +51,7 @@ public class DeclareReviewPage {
     }
 
     public void navigateToDelareReviewPage() throws InterruptedException{
-        BusinessImpactPage businessImpactPage=new BusinessImpactPage(driver);
+        BusinessImpactPage businessImpactPage=new BusinessImpactPage(driver,true);
         businessImpactPage.provideBusinessImpact();
     }
 }

@@ -11,6 +11,11 @@ public class BusinessImpactPage {
 
     public BusinessImpactPage(WebDriver driver)throws InterruptedException{
         this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public BusinessImpactPage(WebDriver driver,boolean autoload)throws InterruptedException{
+        this.driver=driver;
         navigateToBusinessImpactPage();
         PageFactory.initElements(driver,this);
     }
@@ -37,7 +42,7 @@ public class BusinessImpactPage {
     }
 
     public void navigateToBusinessImpactPage() throws InterruptedException{
-        CostPage costPage=new CostPage(driver);
+        CostPage costPage=new CostPage(driver,true);
         costPage.selectPurchaseType();
     }
 }
