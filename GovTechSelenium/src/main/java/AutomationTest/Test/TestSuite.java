@@ -1,22 +1,15 @@
 package AutomationTest.Test;
 
-import AutomationTest.Pages.MyGrants.*;
-import AutomationTest.Pages.HomePage;
+import AutomationTest.Pages.MyGrantsPage.*;
 import AutomationTest.Pages.LogInPage;
-import AutomationTest.Pages.MyGrants.GetNewGrant.ApplyForGrant;
-import AutomationTest.Pages.MyGrants.GetNewGrant.SelectGrant;
-import AutomationTest.Pages.MyGrants.GetNewGrant.SelectSector;
+import AutomationTest.Pages.MyGrantsPage.GetNewGrant.ApplyForGrantPage;
+import AutomationTest.Pages.MyGrantsPage.GetNewGrant.SelectGrantPage;
+import AutomationTest.Pages.MyGrantsPage.GetNewGrant.SelectSectorPage;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class TestSuite {
@@ -29,8 +22,14 @@ public class TestSuite {
         System.setProperty("webdriver.chrome.driver","/Users/ayushirastogi/Downloads/googlechrome.dmg");
     }
 
-    public void setDriverToFireFoxDriver(){
+    @Test
+    public void sampletestcase1()throws InterruptedException{
+        setDriverToChromeDriver();
+        driver.navigate().to("https://public:Let$BeC001@bgp-qa.gds-gov.tech");
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 
+        SummaryPage summaryPage=new SummaryPage(driver);
+        summaryPage.checkSuccessMessage();
     }
 
     @Test
@@ -38,9 +37,6 @@ public class TestSuite {
         setDriverToChromeDriver();
         driver.navigate().to("https://public:Let$BeC001@bgp-qa.gds-gov.tech");
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-        HomePage homePage=new HomePage(driver);
-        homePage.validateHomePageUrl();
-        homePage.clickOnLoginButton();
 
         LogInPage logInPage=new LogInPage(driver);
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
@@ -53,13 +49,13 @@ public class TestSuite {
         DashboardPage dashboardPage=new DashboardPage(driver);
         dashboardPage.clickOnGetNewGrant();
 
-        SelectSector selectSector=new SelectSector(driver);
-        selectSector.selectSector();
+        SelectSectorPage selectSectorPage =new SelectSectorPage(driver);
+        selectSectorPage.selectSector();
 
-        SelectGrant selectGrant=new SelectGrant(driver);
-        selectGrant.selectGrant();
+        SelectGrantPage selectGrantPage =new SelectGrantPage(driver);
+        selectGrantPage.selectGrant();
 
-        ApplyForGrant applyforgrant=new ApplyForGrant(driver);
+        ApplyForGrantPage applyforgrant=new ApplyForGrantPage(driver);
         applyforgrant.chooseBusinessArea();
         try{
             Thread.sleep(1000);
@@ -118,16 +114,16 @@ public class TestSuite {
         summaryPage.checkSuccessMessage();
 
     }
-@Test
-public void testCase2(){
-    EligibilityPage eligibilityPage=new EligibilityPage(driver);
+
+    @Test
+    public void testCase2() throws InterruptedException{
+        EligibilityPage eligibilityPage=new EligibilityPage(driver);
         boolean validation=eligibilityPage.selectNoRadioButton();
         Assert.assertTrue("All elements are disabled",validation);
-            if(validation){
-                Assert.assertTrue("SME Link is Enabled",eligibilityPage.smeMattersLinkEnabled());
-                Assert.assertFalse("Next Button Disabled",eligibilityPage.nextButtonEnabled());
-            }
-
+        if(validation){
+            Assert.assertTrue("SME Link is Enabled",eligibilityPage.smeMattersLinkEnabled());
+            Assert.assertFalse("Next Button Disabled",eligibilityPage.nextButtonEnabled());
+        }
     }
 
 }

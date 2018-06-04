@@ -9,13 +9,13 @@ public class HomePage{
 
    private WebDriver driver;
 
+    @FindBy(className= "login")
+    private WebElement LoginButton;
+
    public HomePage(WebDriver driver){
        this.driver=driver;
        PageFactory.initElements(driver,this);
    }
-
-   @FindBy(className= "login")
-   private WebElement LoginButton;
 
    public void clickOnLoginButton(){
        LoginButton.click();
@@ -29,4 +29,5 @@ public class HomePage{
            b=false;
        return b;
    }
-   }
+
+}

@@ -18,27 +18,33 @@ public class LogInPage {
     @FindBy(xpath="//div[@class='base-container']//select")
     WebElement ListOfUsers;
 
-        public LogInPage(WebDriver driver){
-            this.driver=driver;
-            PageFactory.initElements(driver,this);
-        }
-
-         public void LoginAsDefinedUser(String userId)throws Exception{
-             ListOfUsers.click();
-             Select selectUser=new Select(ListOfUsers);
-             List<WebElement> optionList=selectUser.getOptions();
-             int elementIndex=0;
-             for(WebElement element:optionList){
-                 if(element.getText().equalsIgnoreCase("S9111111A - 197702066M")){
-                     elementIndex=optionList.indexOf(element);
-                     break;
-                 }
-             }
-             selectUser.getOptions().get(elementIndex).click();
-             Thread.sleep(1000);
-             LoginButton.click();
-             driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
-         }
-
-
+    public LogInPage(WebDriver driver){
+        this.driver=driver;
+        navigateToLoginPage();
+        PageFactory.initElements(driver,this);
     }
+
+    public void LoginAsDefinedUser(String userId)throws InterruptedException{
+        ListOfUsers.click();
+        Select selectUser=new Select(ListOfUsers);
+        List<WebElement> optionList=selectUser.getOptions();
+        int elementIndex=0;
+        for(WebElement element:optionList){
+            if(element.getText().equalsIgnoreCase("S9111111A - 197702066M")){
+                elementIndex=optionList.indexOf(element);
+                break;
+            }
+        }
+        selectUser.getOptions().get(elementIndex).click();
+        Thread.sleep(1000);
+        LoginButton.click();
+        driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
+    }
+
+    public void navigateToLoginPage(){
+        HomePage homePage=new HomePage(driver);
+        homePage.validateHomePageUrl();
+        homePage.clickOnLoginButton();
+    }
+
+}
