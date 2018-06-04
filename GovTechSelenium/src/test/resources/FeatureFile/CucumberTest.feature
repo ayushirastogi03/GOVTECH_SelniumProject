@@ -1,5 +1,9 @@
 Feature: This is a home Page feature
 
+background:
+    Given Launch chrome driver
+    And Launch application url
+
 Scenario: submit a grant application
     Given Start the chrome browser
     And launch the Url
