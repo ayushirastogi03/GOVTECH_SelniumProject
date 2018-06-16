@@ -7,6 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.io.File;
@@ -31,15 +32,16 @@ public class ExcelFileReader {
     }
 
     private void init()throws IOException {
-        fs = new POIFSFileSystem(new FileInputStream(new File(file)));
+        fs = new POIFSFileSystem(new FileInputStream(new File(file).getCanonicalPath()));
         wb = new HSSFWorkbook(fs);
         sheet = wb.getSheetAt(0);
     }
 
     public List<String> getTestCaseDataAsList(String testcaseID){
         List<String> testData=new ArrayList();
+        DataFormatter dataFormatter= new DataFormatter();
 
-        Iterator<Row> iterator = sheet.iterator();
+        Iterator<Row> iterator = sheet.rowIterator();
         while (iterator.hasNext()) {
             Row currentRow = iterator.next();
             if (currentRow.getCell(0).getStringCellValue().equalsIgnoreCase(testcaseID)) {
@@ -47,7 +49,7 @@ public class ExcelFileReader {
 
                 while (cellIterator.hasNext()) {
                     Cell currentCell = cellIterator.next();
-                    testData.add(currentCell.getStringCellValue());
+                    testData.add(dataFormatter.formatCellValue(currentCell));
                 }
             }
         }
@@ -56,10 +58,10 @@ public class ExcelFileReader {
 
     public static void main(String arg[]){
         try{
-            ExcelFileReader ex=new ExcelFileReader("src/test/resources/testData/TestData.xls");
-            ex.getTestCaseDataAsList("");
+            ExcelFileReader ex=new ExcelFileReader("GovTechSelenium/src/test/resources/testData/TestData.xls");
+            List<String> testDataList=ex.getTestCaseDataAsList("data1");
         }catch(Exception e){
-
+            System.out.println(e);
         }
     }
 }

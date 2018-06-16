@@ -23,9 +23,9 @@ Background:
         And Provide the aggrement and submit the application on the company Profile Page and Validate all the fields matches the input provided at each page
         And Validate that application is submitted successfuly
         Examples:
-        |   <test_id>  |
-        |   test1      |
-        |   test2      |
+        |   test_id    |
+        |   data1      |
+        |   data2      |
 
     @Regression
     Scenario Outline: Submit Grant Application with invalid Eligibility

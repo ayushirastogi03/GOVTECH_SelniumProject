@@ -80,7 +80,7 @@ public class ProposalPage {
     }
 
     public void setDate() {
-        calendarIcon.sendKeys("05 Jun 2018");
+        calendarIcon.sendKeys("20 Jun 2018");
         checkExistingSolution.click();
         reason.sendKeys("test");
     }
@@ -107,6 +107,7 @@ public class ProposalPage {
         Thread.sleep(2000);
         checkBusinessAddress.click();
         NextButton.click();
+        Thread.sleep(2000);
     }
 
     public void navigateToProposalPage() throws InterruptedException{

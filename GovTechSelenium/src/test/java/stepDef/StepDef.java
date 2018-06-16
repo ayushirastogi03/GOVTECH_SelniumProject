@@ -104,10 +104,8 @@ public class StepDef {
 
     @When("^Provide Contact Details on the Contact & Details page$")
     public void provide_Contact_Details_on_the_Contact_Details_page(DataTable dataTable) throws Exception  {
-        Map<String,String> dataMap=dataTable.asMap(String.class,String.class);
-
         ExcelFileReader excelFileReader=new ExcelFileReader("src/test/resources/testData/TestData.xls");
-        List<String> testDataList=excelFileReader.getTestCaseDataAsList(dataMap.get("testcase_ID"));
+        List<String> testDataList=excelFileReader.getTestCaseDataAsList(dataTable.asList(String.class).get(1));
 
         String name=testDataList.get(1);
         String JobTitle=testDataList.get(2);
@@ -133,7 +131,7 @@ public class StepDef {
         proposalPage.enterLocationType("Home Office/Residential Building");
     }
 
-    @Then("^Provide the Purchase details on Purchase page$")
+    @Then("^Provide the Purchase details on Purchase page and Validate the total fees$")
     public void provide_the_Purchase_details_on_Purchase_page() throws InterruptedException   {
         CostPage costPage=new CostPage(driver);
         costPage.selectPurchaseType();
